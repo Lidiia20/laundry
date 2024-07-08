@@ -1,0 +1,72 @@
+
+# FVM Version Cache
+.fvm/
+# Flutter/Dart/Pub related files
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+.idea/
+.vscode/
+
+# Obsolete config files
+*.iml
+*.ipr
+*.iws
+
+# IntelliJ related
+.idea/
+
+# Visual Studio Code related
+.vscode/
+
+# Files and Directories created by the IDEs
+.DS_Store
+*.swp
+*.lock
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Windows related
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS related
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Directory with OS meta data files
+.Spotlight-V100
+.Trashes
+
+# Compiled Python files
+__pycache__/
+
+# C++ files
+*.class
+*.suo
+*.pdb
+*.mod
+*.proj
+*.pch
+*.opendb
+*.dll
+*.lib
+*.exe
+*.obj
+*.elf
+
+# Logs
+*.log
+
+# Packages
+node_modules/

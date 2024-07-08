@@ -1,13 +1,8 @@
-// ignore_for_file: unused_import
-
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../models/pickup.dart';
 import '../models/transaction.dart';
-
 
 class DBHelper {
   static Database? _database;
@@ -71,8 +66,7 @@ class DBHelper {
     );
   }
 
-
-void _createDB(Database db, int version) async {
+  void _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE transactions(
         id INTEGER PRIMARY KEY,
@@ -84,16 +78,16 @@ void _createDB(Database db, int version) async {
     ''');
   }
 
-  Future<int> insertTransaction(Transaction transaction) async {
+  Future<int> insertTransaction(TransactionModel transaction) async {
     Database db = await instance.database;
     return await db.insert('transactions', transaction.toMap());
   }
 
-  Future<List<Transaction>> getTransactions() async {
+  Future<List<TransactionModel>> getTransactions() async {
     Database db = await instance.database;
     List<Map<String, dynamic>> maps = await db.query('transactions');
     return List.generate(maps.length, (i) {
-      return Transaction(
+      return TransactionModel(
         id: maps[i]['id'],
         customerName: maps[i]['customerName'],
         pickupDate: maps[i]['pickupDate'],
@@ -103,7 +97,7 @@ void _createDB(Database db, int version) async {
     });
   }
 
-  Future<int> updateTransaction(Transaction transaction) async {
+  Future<int> updateTransaction(TransactionModel transaction) async {
     Database db = await instance.database;
     return await db.update(
       'transactions',
@@ -121,3 +115,4 @@ void _createDB(Database db, int version) async {
       whereArgs: [id],
     );
   }
+}
