@@ -1,14 +1,15 @@
 // transaction_provider.dart
 
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
+
 import '../database/db_helper.dart';
+import '../models/transaction.dart';
 
 class TransactionProvider with ChangeNotifier {
-  List<Transaction> _transactions = [];
+  List<TransactionModel> _transactions = [];
   DBHelper dbHelper = DBHelper.instance;
 
-  List<Transaction> get transactions => [..._transactions];
+  List<TransactionModel> get transactions => [..._transactions];
 
   Future<void> fetchTransactions() async {
     final fetchedTransactions = await dbHelper.getTransactions();
@@ -16,12 +17,12 @@ class TransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addTransaction(Transaction transaction) async {
+  Future<void> addTransaction(TransactionModel transaction) async {
     await dbHelper.insertTransaction(transaction);
     await fetchTransactions();
   }
 
-  Future<void> updateTransaction(Transaction transaction) async {
+  Future<void> updateTransaction(TransactionModel transaction) async {
     await dbHelper.updateTransaction(transaction);
     await fetchTransactions();
   }

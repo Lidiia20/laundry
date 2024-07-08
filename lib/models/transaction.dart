@@ -1,13 +1,13 @@
 // transaction.dart
 
-class Transaction {
+class TransactionModel {
   final int id;
   final String customerName;
   final String pickupDate;
   final String deliveryDate;
   final String status;
 
-  Transaction({
+  TransactionModel({
     required this.id,
     required this.customerName,
     required this.pickupDate,
