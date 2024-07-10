@@ -5,6 +5,7 @@ import 'package:laundry_app/pages/customer/add_customer_page.dart';
 import 'package:laundry_app/pages/customer/customer_page.dart';
 import 'package:laundry_app/pages/customer/detail_customer_page.dart';
 import 'package:laundry_app/pages/home/home_page.dart';
+import 'package:laundry_app/pages/pickup/pickup_page.dart';
 import 'package:laundry_app/pages/transaction/add_transaction_page.dart';
 import 'package:laundry_app/pages/transaction/detail_transaction_page.dart';
 import 'package:laundry_app/pages/transaction/transaction_page.dart';
@@ -28,5 +29,6 @@ class AppRoutes {
           ModalRoute.of(context)!.settings.arguments as TransactionModel;
       return DetailTransactionPage(transaction: transaction);
     },
+    RouteNames.pickup: (context) => const PickupPage(),
   };
 }

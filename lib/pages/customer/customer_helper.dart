@@ -63,3 +63,19 @@ Future<List<CustomerModel>> getCustomersByNameOrId(String value) async {
   }
   return customers;
 }
+
+Future<List<CustomerModel>> getCustomersByCreadtedAt(DateTime date) async {
+  // inisiasi instance dari database
+  final db = await DBHelper.instance.database;
+  // mengambil data dari table customer dengan raw query
+  final query = await db.rawQuery(CustomerQuery.selectByCreatedAt(), [date]);
+  log("query : $query");
+  log("value : $date");
+  // mengubah hasil query menjadi list
+  List<CustomerModel> customers = [];
+  for (var item in query) {
+    // membuat objek Customer dari json
+    customers.add(CustomerModel.fromJson(item));
+  }
+  return customers;
+}

@@ -51,4 +51,8 @@ CREATE TABLE $tableName (
   static String delete(int id) {
     return "DELETE FROM $tableName WHERE $idColumn=$id";
   }
+
+  static String selectByCreatedAt() {
+    return "SELECT * FROM $tableName ORDER BY $createdAt";
+  }
 }

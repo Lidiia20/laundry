@@ -1,3 +1,5 @@
+import 'package:laundry_app/database/query/customer_query.dart';
+
 class TransactionQuery {
   static const tableName = "transactions";
   static const idColumn = "id";
@@ -33,8 +35,17 @@ CREATE TABLE $tableName (
 
   static String selectAllWithCustomer() {
     return '''
-      SELECT transactions.*, customers.name AS customer_name, customers.phone_number AS customer_phone_number, customers.address AS customer_address FROM $tableName
+      SELECT $tableName.*, ${CustomerQuery.tableName}.name AS customer_name, ${CustomerQuery.tableName}.phone_number AS customer_phone_number, ${CustomerQuery.tableName}.address AS customer_address FROM $tableName
       LEFT JOIN customers ON $customerIdColumn = customers.$idColumn
+    ''';
+  }
+
+  static String selectTransactionByPickUpDateWithCustomer(
+      DateTime start, DateTime end) {
+    return '''
+      SELECT $tableName.*, ${CustomerQuery.tableName}.name AS customer_name, ${CustomerQuery.tableName}.phone_number AS customer_phone_number, ${CustomerQuery.tableName}.address AS customer_address FROM $tableName
+      LEFT JOIN customers ON $customerIdColumn = customers.$idColumn
+      WHERE $pickupDateColumn BETWEEN '$start' AND '$end'
     ''';
   }
 
