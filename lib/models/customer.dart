@@ -1,28 +1,42 @@
 // lib/models/customer.dart
-class Customer {
- final int id;
- final String name;
- final String phoneNumber;
- final String address;
+import 'package:equatable/equatable.dart';
 
-  Customer({
-    required this.id,
+class CustomerModel extends Equatable {
+  final int? id;
+  final String name;
+  final String phoneNumber;
+  final String address;
+  final DateTime createdAt;
+
+  const CustomerModel({
+    this.id,
     required this.name,
     required this.phoneNumber,
     required this.address,
+    required this.createdAt,
   });
 
-  factory Customer.fromJson(Map<String, dynamic> json) => Customer(
+  factory CustomerModel.fromJson(Map<String, dynamic> json) => CustomerModel(
         id: json['id'],
         name: json['name'],
         phoneNumber: json['phone_number'],
         address: json['address'],
+        createdAt: DateTime.parse(json['created_at']),
       );
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'phone_number': phoneNumber,
-        'address': address,
-      };
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{
+      'name': name,
+      'phone_number': phoneNumber,
+      'address': address,
+      'created_at': createdAt.toIso8601String(),
+    };
+    if (id != null) {
+      map['id'] = id!;
+    }
+    return map;
+  }
+
+  @override
+  List<Object?> get props => [name, phoneNumber, address, id, createdAt];
 }
