@@ -8,4 +8,6 @@ class RouteNames {
   static const customer = '/customer';
   static const addCustomer = '$customer/add';
   static const detailCustomer = '$customer/detail';
+
+  static const pickup = "/pickup";
 }

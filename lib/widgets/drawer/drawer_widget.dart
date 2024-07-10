@@ -31,6 +31,8 @@ class DrawerWidget extends StatelessWidget {
       _createDrawerItem(context, 'Customer', RouteNames.customer),
       // Membuat item drawer untuk "Transaksi"
       _createDrawerItem(context, 'Transaksi', RouteNames.transaction),
+      // Membuat item drawer untuk "PickUp"
+      _createDrawerItem(context, "Pickup", RouteNames.pickup)
     ];
   }
 
